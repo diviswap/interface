@@ -21,6 +21,7 @@ import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, Redirec
 import { Launchpad } from '../components/LaunchPad/Launchpad'
 import { TokenSale } from '../components/Token'
 import { BuyToken } from '../components/Token/BuyToken'
+import { Home } from './Home/Home'
 
 
 const AppWrapper = styled.div`
@@ -72,6 +73,7 @@ export default function App() {
           <Polling />
           <Web3ReactManager>
             <Switch>
+              <Route exact strict path="/" component={Home} />
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/tokensale" component={TokenSale} />
               <Route path="/buy/:tokenTitle/:tokenAddress" component={BuyToken} />
