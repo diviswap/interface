@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDomainContract } from './useContract' // Asegúrate de tener esta función correctamente definida
+import { useDomainContract } from './useContract' 
 import useDebounce from './useDebounce'
 
 /**
@@ -16,14 +16,14 @@ export default function useENSName(
   const debouncedAccount = useDebounce(account, 200)
   const DOMAINS = useDomainContract()
 
-  // Efecto para obtener el nombre ENS y actualizar el estado
+  
   useEffect(() => {
     const fetchENSName = async () => {
       if (debouncedAccount && DOMAINS) {
         setLoading(true)
         try {
           const data = await DOMAINS.getDomainByAddress(debouncedAccount)
-          const name = data?.[15] || null // Aseguramos que 'name' sea null si no existe data[15]
+          const name = data?.[15] || null 
           setENSName(name)
         } catch (error) {
           console.error('Error fetching ENS name:', error)
