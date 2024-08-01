@@ -229,6 +229,9 @@ export default function Header() {
           </UniIcon>
         </Title>
         <HeaderLinks>
+          <StyledNavLink id={`home-nav-link`} exact to={'/'}>
+            Home
+          </StyledNavLink>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
             {t('swap')}
           </StyledNavLink>
