@@ -1,5 +1,6 @@
 import { Contract } from '@ethersproject/contracts'
 import { abi as GOVERNANCE_ABI } from '@uniswap/governance/build/GovernorAlpha.json'
+import DOMAIN_ABI from '../constants/abis/DOMAIN.json'
 import { abi as UNI_ABI } from '@uniswap/governance/build/Uni.json'
 import { abi as STAKING_REWARDS_ABI } from '@uniswap/liquidity-staker/build/StakingRewards.json'
 import { abi as MERKLE_DISTRIBUTOR_ABI } from '@uniswap/merkle-distributor/build/MerkleDistributor.json'
@@ -132,4 +133,8 @@ export function useSocksController(): Contract | null {
     UNISOCKS_ABI,
     false
   )
+}
+export function useDomainContract(chainId?: any, withSignerIfPossible?: boolean): Contract | null {
+  const contract = '0x1C55a6e9A736C6d86d9ff1ba4700e64583c18f50'
+  return useContract(contract, DOMAIN_ABI.abi, withSignerIfPossible)
 }
