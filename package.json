@@ -1,6 +1,6 @@
 {
-  "name": "@uniswap/interface",
-  "description": "Uniswap Interface",
+  "name": "@dswap/interface",
+  "description": "Diviswap Interface",
   "homepage": ".",
   "private": true,
   "devDependencies": {
@@ -120,6 +120,8 @@
   "dependencies": {
     "animate.css": "^4.1.1",
     "node-sass": "^9.0.0",
+    "react-icons": "^5.2.1",
+    "react-intersection-observer": "^8.34.0",
     "styled-components": "5.1.1"
   }
 }
