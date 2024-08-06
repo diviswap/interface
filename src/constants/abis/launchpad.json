@@ -1,431 +1,596 @@
 [
-    {
-        "inputs": [],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "contribuidor",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "cantidad",
-                "type": "uint256"
-            }
-        ],
-        "name": "ContribucionReclamada",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "propietario",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "cantidad",
-                "type": "uint256"
-            }
-        ],
-        "name": "ETHRetirado",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "previousOwner",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "newOwner",
-                "type": "address"
-            }
-        ],
-        "name": "OwnershipTransferred",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "comprador",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "beneficiario",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "valor",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "cantidad",
-                "type": "uint256"
-            }
-        ],
-        "name": "TokensComprados",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "comprador",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "cantidad",
-                "type": "uint256"
-            }
-        ],
-        "name": "TokensReclamados",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            }
-        ],
-        "name": "VentaCancelada",
-        "type": "event"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "tasa",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "lowcap",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "duracion",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "cantidadDisponible",
-                "type": "uint256"
-            }
-        ],
-        "name": "agregarToken",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            }
-        ],
-        "name": "cancelarVenta",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            }
-        ],
-        "name": "comprarTokens",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "nuevaTasa",
-                "type": "uint256"
-            }
-        ],
-        "name": "establecerTasa",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "ventaTokenAddress",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "contribuidorAddress",
-                "type": "address"
-            }
-        ],
-        "name": "getTokensComprados",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "listaTokens",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "owner",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            }
-        ],
-        "name": "reclamarContribucion",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "obtenerListaTokens",
-        "outputs": [
-            {
-                "internalType": "address[]",
-                "name": "",
-                "type": "address[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            }
-        ],
-        "name": "reclamarTokens",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "renounceOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            }
-        ],
-        "name": "retirarCHZPorToken",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "direccionToken",
-                "type": "address"
-            }
-        ],
-        "name": "reclamarTokensOwner",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "newOwner",
-                "type": "address"
-            }
-        ],
-        "name": "transferOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "ventasTokens",
-        "outputs": [
-            {
-                "internalType": "contract IERC20",
-                "name": "token",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "tasa",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "weiRecaudados",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "lowcap",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "fechaFin",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "cantidadDisponible",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "cantidadTotal",
-                "type": "uint256"
-            },
-            {
-                "internalType": "address",
-                "name": "ownerToken",
-                "type": "address"
-            },
-            {
-                "internalType": "bool",
-                "name": "fondosRetirados",
-                "type": "bool"
-            },
-            {
-                "internalType": "uint8",
-                "name": "decimales",
-                "type": "uint8"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "stateMutability": "payable",
-        "type": "receive"
-    }
+	{
+		"inputs": [
+			{
+				"internalType": "contract IERC20",
+				"name": "_dswapToken",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "contribuidor",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "cantidad",
+				"type": "uint256"
+			}
+		],
+		"name": "ContribucionReclamada",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "propietario",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "cantidad",
+				"type": "uint256"
+			}
+		],
+		"name": "DSWAPRecibido",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "direccion",
+				"type": "address"
+			}
+		],
+		"name": "DireccionExentaAgregada",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "direccion",
+				"type": "address"
+			}
+		],
+		"name": "DireccionExentaEliminada",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "propietario",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "cantidad",
+				"type": "uint256"
+			}
+		],
+		"name": "FondosRetirados",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "comprador",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "beneficiario",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "valor",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "cantidad",
+				"type": "uint256"
+			}
+		],
+		"name": "TokensComprados",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "comprador",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "cantidad",
+				"type": "uint256"
+			}
+		],
+		"name": "TokensReclamados",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			}
+		],
+		"name": "VentaCancelada",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "direccion",
+				"type": "address"
+			}
+		],
+		"name": "agregarExentoTarifa",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tasa",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "lowcap",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "duracion",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "cantidadDisponible",
+				"type": "uint256"
+			}
+		],
+		"name": "agregarToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tarifaNueva",
+				"type": "uint256"
+			}
+		],
+		"name": "cambiarTarifa",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			}
+		],
+		"name": "cancelarVenta",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			}
+		],
+		"name": "comprarTokens",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "dswapRecaudadoContrato",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "dswapToken",
+		"outputs": [
+			{
+				"internalType": "contract IERC20",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "direccion",
+				"type": "address"
+			}
+		],
+		"name": "eliminarExentoTarifa",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "nuevaTasa",
+				"type": "uint256"
+			}
+		],
+		"name": "establecerTasa",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "exentasTarifa",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "ventaTokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "contribuidorAddress",
+				"type": "address"
+			}
+		],
+		"name": "getTokensComprados",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "listaTokens",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "obtenerListaTokens",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			}
+		],
+		"name": "reclamarContribucion",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			}
+		],
+		"name": "reclamarTokens",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			}
+		],
+		"name": "reclamarTokensOwner",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "direccionToken",
+				"type": "address"
+			}
+		],
+		"name": "retirarCHZPorToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "retirarFondos",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "tarifa",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "ventasTokens",
+		"outputs": [
+			{
+				"internalType": "contract IERC20",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tasa",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "weiRecaudados",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "lowcap",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "fechaFin",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "cantidadDisponible",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "cantidadTotal",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "ownerToken",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "fondosRetirados",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint8",
+				"name": "decimales",
+				"type": "uint8"
+			},
+			{
+				"internalType": "bool",
+				"name": "tokensRetiradosOwner",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "ventaCancelada",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
+	}
 ]
