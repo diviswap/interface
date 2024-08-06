@@ -50,7 +50,7 @@ export function useV2MigratorContract(): Contract | null {
 }
 
 export function useLaunchpadContract(): Contract | null {
-  return useContract('0x801326c0f5bf83a54E47d5c9E12a152f22D013BD', LAUNCHPAD_ABI, true)
+  return useContract('0x7B402CFc392f162faDE1CAa1F11DF15867C149E9', LAUNCHPAD_ABI, true)
 }
 
 export function useV1ExchangeContract(address?: string, withSignerIfPossible?: boolean): Contract | null {
