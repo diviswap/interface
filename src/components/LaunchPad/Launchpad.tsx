@@ -278,7 +278,7 @@ export const Launchpad: React.FC = () => {
 
       const decimals = await tokenContract.decimals()
 
-      const durationInSeconds = SECONDS_IN_DAY * parseInt(duracion)
+      const durationInSeconds = SECONDS_IN_DAY * parseFloat(duracion);
       console.log(durationInSeconds)
       const parsedTasa = ethers.utils.parseUnits(tasa, 'ether')
       const parsedLowcap = ethers.utils.parseUnits(lowcap, 'ether')
