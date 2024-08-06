@@ -298,7 +298,7 @@ export const Launchpad: React.FC = () => {
       const fechaFin = new Date(fechaInicio)
       fechaFin.setDate(fechaInicio.getDate() + parseInt(duracion))
 
-      await launchpadContract.agregarToken(direccionToken, parsedTasa, parsedLowcap, 300, parsedCantidadDisponible)
+      await launchpadContract.agregarToken(direccionToken, parsedTasa, parsedLowcap, durationInSeconds, parsedCantidadDisponible)
 
       let imageUrl = ''
 
