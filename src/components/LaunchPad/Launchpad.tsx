@@ -42,7 +42,11 @@ const CardImage = styled.div`
   @media (max-width: 768px) {
     padding-bottom: 30%;
   }
-`
+
+  @media (max-width: 480px) {
+    padding-bottom: 40%;
+  }
+`;
 
 const CardHeading = styled.h2`
   position: absolute;
@@ -66,7 +70,29 @@ const CardHeading = styled.h2`
     top: 10%;
     font-size: 1.5rem;
   }
-`
+
+  @media (max-width: 480px) {
+    left: 3%;
+    top: 8%;
+    font-size: 1.25rem;
+
+    small {
+      font-size: 0.65em;
+    }
+  }
+`;
+
+const Price = styled.span`
+  font-size: 0.7rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.5rem;
+  }
+`;
 
 const LaunchImage = styled.img`
   position: absolute;
@@ -82,7 +108,13 @@ const LaunchImage = styled.img`
     bottom: 10px;
     width: 180px;
   }
-`
+
+  @media (max-width: 480px) {
+    right: 15px;
+    bottom: 15px;
+    width: 100px;
+  }
+`;
 
 const CardForm = styled.form`
   display: flex;
@@ -182,6 +214,7 @@ const FileInputLabel = styled.label`
     color: orange;
   }
 `
+
 
 const FileInput = styled.input`
   display: none;
@@ -366,6 +399,7 @@ export const Launchpad: React.FC = () => {
         <CardHeading>
           Get Started
           <small> Create a token launch</small>
+          <Price> (Price 150 $DSWAP)</Price>
         </CardHeading>
         <LaunchImage src={launchImage} alt="Imagen Lateral" />
       </CardImage>
@@ -425,7 +459,7 @@ export const Launchpad: React.FC = () => {
             nombre: formValues.descripcion,
             tasa: parseFloat(formValues.tasa),
             lowcap: parseFloat(formValues.lowcap),
-            duracion: parseFloat(formValues.duracion), // Cambiar a parseFloat
+            duracion: parseFloat(formValues.duracion),
             cantidadDisponible: parseFloat(formValues.cantidadDisponible)
           }}
           onClose={handleCloseExito}
