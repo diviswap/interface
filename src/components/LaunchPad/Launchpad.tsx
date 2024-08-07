@@ -278,8 +278,9 @@ export const Launchpad: React.FC = () => {
 
       const decimals = await tokenContract.decimals()
 
-      const durationInSeconds = SECONDS_IN_DAY * parseFloat(duracion);
-      console.log(durationInSeconds)
+      const durationInSeconds = SECONDS_IN_DAY * parseFloat(duracion)
+      const fechaInicio = new Date()
+      const fechaFin = new Date(fechaInicio.getTime() + durationInSeconds * 1000)
       const parsedTasa = ethers.utils.parseUnits(tasa, 'ether')
       const parsedLowcap = ethers.utils.parseUnits(lowcap, 'ether')
       const parsedCantidadDisponible = ethers.utils.parseUnits(cantidadDisponible, decimals)
@@ -293,12 +294,13 @@ export const Launchpad: React.FC = () => {
       await approveTx.wait()
       console.log('Aprobación exitosa:', approveTx)
 
-
-      const fechaInicio = new Date()
-      const fechaFin = new Date(fechaInicio)
-      fechaFin.setDate(fechaInicio.getDate() + parseInt(duracion))
-
-      await launchpadContract.agregarToken(direccionToken, parsedTasa, parsedLowcap, durationInSeconds, parsedCantidadDisponible)
+      await launchpadContract.agregarToken(
+        direccionToken,
+        parsedTasa,
+        parsedLowcap,
+        durationInSeconds,
+        parsedCantidadDisponible
+      )
 
       let imageUrl = ''
 
@@ -423,7 +425,7 @@ export const Launchpad: React.FC = () => {
             nombre: formValues.descripcion,
             tasa: parseFloat(formValues.tasa),
             lowcap: parseFloat(formValues.lowcap),
-            duracion: parseInt(formValues.duracion),
+            duracion: parseFloat(formValues.duracion), // Cambiar a parseFloat
             cantidadDisponible: parseFloat(formValues.cantidadDisponible)
           }}
           onClose={handleCloseExito}
