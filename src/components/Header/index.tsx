@@ -199,12 +199,6 @@ const StyledNavLink = styled(NavLink).attrs({
 
 const NETWORK_LABELS: { [chainId in ChainId]: string | null } = {
   [ChainId.MAINNET]: null,
-  [ChainId.RINKEBY]: 'Rinkeby',
-  [ChainId.ROPSTEN]: 'Ropsten',
-  [ChainId.GÖRLI]: 'Görli',
-  [ChainId.KOVAN]: 'Kovan',
-  [ChainId.SEPOLIA]: 'Sepolia',
-  [ChainId.CHILIZ]: 'Chiliz',
   [ChainId.CHILIZM]: 'Chiliz'
 }
 

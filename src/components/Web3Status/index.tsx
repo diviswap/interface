@@ -129,6 +129,48 @@ const SOCK = (
   </span>
 )
 
+
+const CHILIZ_CHAIN_ID = '0x15B38'
+const switchToChilizNetwork = async () => {
+  const ethereum = window.ethereum as any 
+
+  if (ethereum?.request) {
+    try {
+      await ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: CHILIZ_CHAIN_ID }]
+      })
+    } catch (switchError) {
+      if (switchError.code === 4902) {
+        try {
+          await ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainId: CHILIZ_CHAIN_ID,
+                chainName: 'Chiliz Chain',
+                rpcUrls: ['https://rpc.chiliz.com'],
+                nativeCurrency: {
+                  name: 'Chiliz',
+                  symbol: 'CHZ',
+                  decimals: 18
+                },
+                blockExplorerUrls: ['https://explorer.chiliz.com']
+              }
+            ]
+          })
+        } catch (addError) {
+          console.error('Error al agregar la red:', addError)
+        }
+      } else {
+        console.error('Error al cambiar de red:', switchError)
+      }
+    }
+  } else {
+    console.error('Ethereum object not found. Make sure you have MetaMask installed.')
+  }
+}
+
 // eslint-disable-next-line react/prop-types
 function StatusIcon({ connector }: { connector: AbstractConnector }) {
   if (connector === injected) {
@@ -163,11 +205,12 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
 
 function Web3StatusInner() {
   const { t } = useTranslation()
-  const { account, connector, error } = useWeb3React()
-
+  const { account, connector, error, chainId } = useWeb3React()
+  console.log(chainId)
   const { ENSName } = useENSName(account ?? undefined)
 
   const allTransactions = useAllTransactions()
+  const isChilizNetwork = chainId === parseInt(CHILIZ_CHAIN_ID, 16)
 
   const sortedRecentTransactions = useMemo(() => {
     const txs = Object.values(allTransactions)
@@ -180,7 +223,16 @@ function Web3StatusInner() {
   const hasSocks = useHasSocks()
   const toggleWalletModal = useWalletModalToggle()
 
-  if (account) {
+  if (account && !isChilizNetwork) {
+    return (
+      <Web3StatusError onClick={switchToChilizNetwork}>
+        <NetworkIcon />
+        <Text>Switch to Chiliz</Text>
+      </Web3StatusError>
+    )
+  }
+
+  else if (account) {
     return (
       <Web3StatusConnected id="web3-status-connected" onClick={toggleWalletModal} pending={hasPendingTransactions}>
         {hasPendingTransactions ? (
@@ -196,14 +248,18 @@ function Web3StatusInner() {
         {!hasPendingTransactions && connector && <StatusIcon connector={connector} />}
       </Web3StatusConnected>
     )
-  } else if (error) {
+  }
+
+  else if (error) {
     return (
-      <Web3StatusError onClick={toggleWalletModal}>
+      <Web3StatusError onClick={switchToChilizNetwork}>
         <NetworkIcon />
-        <Text>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error'}</Text>
+        <Text>{error instanceof UnsupportedChainIdError ? 'Switch to Chiliz' : 'Error'}</Text>
       </Web3StatusError>
     )
-  } else {
+  }
+
+  else {
     return (
       <Web3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
         <Text>{t('Connect to a wallet')}</Text>

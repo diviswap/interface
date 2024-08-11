@@ -64,23 +64,5 @@ export const WETH = {
     'WETH',
     'Wrapped Ether'
   ),
-  [ChainId.ROPSTEN]: new Token(
-    ChainId.ROPSTEN,
-    '0xc778417E063141139Fce010982780140Aa0cD5Ab',
-    18,
-    'WETH',
-    'Wrapped Ether'
-  ),
-  [ChainId.RINKEBY]: new Token(
-    ChainId.RINKEBY,
-    '0xc778417E063141139Fce010982780140Aa0cD5Ab',
-    18,
-    'WETH',
-    'Wrapped Ether'
-  ),
-  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6', 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.SEPOLIA]: new Token(ChainId.SEPOLIA, '0xD0dF82dE051244f04BfF3A8bB1f62E1cD39eED92', 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.CHILIZ]: new Token(ChainId.CHILIZ, '0x678c34581db0a7808d0aC669d7025f1408C9a3C6', 18, 'WCHZ', 'Wrapped Ether'),
   [ChainId.CHILIZM]: new Token(ChainId.CHILIZM, '0x677F7e16C7Dd57be1D4C8aD1244883214953DC47', 18, 'WCHZ', 'Wrapped Ether')
 }
