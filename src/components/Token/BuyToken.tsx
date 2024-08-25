@@ -375,13 +375,15 @@ export const BuyToken: React.FC = () => {
           cantidadTotal: dbData.cantidadTotal
         }
 
+        const lowcapInWei = ethers.utils.parseEther(dbData.lowcap.toString());
+
         setTokenData(tokenData)
         setTokensPurchased(tokenComprados)
         setIsOwner(info.ownerToken.toLowerCase() === account?.toLowerCase())
         setSaleExpired(
           new Date().getTime() / 1000 > new Date(dbData.fechafin).getTime() / 1000 || dbData.cantidadDisponible === 0
         )
-        setLowcapReached(Number(info.weiRecaudados) >= Number(dbData.lowcap))
+       setLowcapReached(BigInt(info.weiRecaudados) >= BigInt(lowcapInWei));
       } catch (error) {
         console.error('Error fetching token data:', error)
       }
